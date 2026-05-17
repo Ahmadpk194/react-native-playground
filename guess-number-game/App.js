@@ -56,23 +56,26 @@ export default function App() {
     setGuessRounds(numberOfRounds)
   }
 
-  function startNewGameHandler(){
+  function startNewGameHandler() {
     setUserNumber(null);
     setGuessRounds(0)
   }
 
   return (
-    <SafeAreaProvider>
-      <LinearGradient colors={['#92094d', '#e7c143']} style={styles.rootScreen}>
-        <ImageBackground source={require('./assets/images/background.png')}
-          resizeMode="cover" style={styles.rootScreen} imageStyle={styles.bgImage}>
+    <>
+      <StatusBar style='light' />
+      <SafeAreaProvider>
+        <LinearGradient colors={['#92094d', '#e7c143']} style={styles.rootScreen}>
+          <ImageBackground source={require('./assets/images/background.png')}
+            resizeMode="cover" style={styles.rootScreen} imageStyle={styles.bgImage}>
 
-          <SafeAreaView style={styles.rootScreen}>
-            {screen}
-          </SafeAreaView>
-        </ImageBackground>
-      </LinearGradient>
-    </SafeAreaProvider>
+            <SafeAreaView style={styles.rootScreen}>
+              {screen}
+            </SafeAreaView>
+          </ImageBackground>
+        </LinearGradient>
+      </SafeAreaProvider>
+    </>
   );
 }
 
