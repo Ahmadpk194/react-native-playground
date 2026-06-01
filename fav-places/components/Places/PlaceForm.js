@@ -1,14 +1,33 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native"
 import { COLORS } from "../../constants/colors";
 import ImagePicker from "./ImagePicker";
+import LocationPicker from "./LocationPicker";
+import Button from "../ui/Button";
+import { Place } from "../../models/place";
 
-function PlaceForm() {
+function PlaceForm({ onCreatePlace }) {
   const [enteredTitle, setEnteredTitle] = useState('');
+  const [pickedLocation, setPickedLocation] = useState()
+  const [seletedImage, setSelectedImage] = useState()
 
   function changeTitleHandler(enteredText) {
     setEnteredTitle(enteredText)
   }
+
+  function takeImageHandler(imageUri) {
+    setSelectedImage(imageUri)
+  }
+
+  const pickLocationHandler = useCallback((location) => {
+    setPickedLocation(location)
+  }, [])
+
+  function savePlaceHandler() {
+    const placeData = new Place(enteredTitle, seletedImage, pickedLocation);
+    onCreatePlace(placeData)
+  }
+
 
   return (
     <ScrollView style={styles.form}>
@@ -16,7 +35,9 @@ function PlaceForm() {
         <Text style={styles.lable}>Title</Text>
         <TextInput style={styles.input} onChangeText={changeTitleHandler} value={enteredTitle} />
       </View>
-      <ImagePicker />
+      <ImagePicker onTakeImage={takeImageHandler} />
+      <LocationPicker onPickLocation={pickLocationHandler} />
+      <Button onPress={savePlaceHandler}>Add Place</Button>
     </ScrollView>
   )
 }
