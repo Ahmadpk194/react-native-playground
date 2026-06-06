@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "My Recipe Book",
-    "slug": "navigation-app",
+    "name": "push-notifications",
+    "slug": "push-notifications",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,25 +13,32 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true,
-      "package": "com.ahmadpk194.myrecipebook"
+      "edgeToEdgeEnabled": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "extra": {
-      "eas": {
-        "projectId": "e6632dd6-60ee-47ca-bac6-147d23373aa8"
-      }
-    }
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./local/assets/notification_icon.png",
+          "color": "#ffffff",
+          "defaultChannel": "default",
+          "sounds": [
+            "./local/assets/notification_sound.wav",
+            "./local/assets/notification_sound_other.wav"
+          ],
+          "enableBackgroundRemoteNotifications": false
+        }
+      ]
+    ]
   }
 }
